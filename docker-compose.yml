@@ -1,0 +1,17 @@
+networks:
+  proxy:
+    external: true
+
+services:
+  app:
+    image: node:22
+    container_name: app
+    restart: unless-stopped
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: ./infra/install.sh
+    ports:
+      - "3000:5173"
+    networks:
+      - proxy
