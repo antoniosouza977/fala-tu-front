@@ -13,6 +13,7 @@ import FloatLabel from "primevue/floatlabel";
 import InputText from "primevue/inputtext";
 import Password from "primevue/password";
 import ToggleSwitch from "primevue/toggleswitch";
+import AuthService from "@/services/authService.js";
 
 
 const app = createApp(App);
@@ -35,5 +36,14 @@ app.component('InputText', InputText)
 app.component('Password', Password)
 app.component('ToggleSwitch', ToggleSwitch)
 
+
+router.beforeEach((to, from) => {
+    if (to.meta.requiresAuth && !AuthService.isAuthenticated()) {
+        return {
+            path: '/login',
+            query: { redirect: to.fullPath },
+        }
+    }
+})
 
 app.mount('#app')
