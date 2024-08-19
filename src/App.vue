@@ -1,11 +1,21 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
+<script>
+import {RouterView} from 'vue-router'
+import NavBar from "@/components/NavBar.vue";
+
+export default {
+    name: "App",
+    components: {
+        NavBar,
+        RouterView
+    }
+}
 </script>
 
 <template>
-  <div class="w-full h-screen">
-    <RouterView />
-  </div>
+    <div class="w-full h-screen">
+        <NavBar/>
+        <RouterView/>
+    </div>
 </template>
 
 <style>
